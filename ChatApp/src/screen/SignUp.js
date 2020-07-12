@@ -54,7 +54,7 @@ const SignUp = ({navigation}) =>{
                 dispatchLoaderAction({
                     type:LOADING_STOP,
                 });
-                navigation.navigate('Home');
+                navigation.replace('Home');
             })
             .catch((err)=>{
                 dispatchLoaderAction({
@@ -70,6 +70,12 @@ const SignUp = ({navigation}) =>{
             });
             alert(err);
         });
+        // setTimeout(()=>{
+        //     dispatchLoaderAction({
+        //         type:LOADING_STOP,
+
+        //     });
+        // },1000)
        
         }
        

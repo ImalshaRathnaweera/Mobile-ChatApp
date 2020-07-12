@@ -5,6 +5,7 @@ import Login from '../screen/Login';
 import SignUp from '../screen/SignUp';
 import Home from '../screen/Home';
 
+
 const Stack = createStackNavigator();
 
 const AuthNavigator =()=>(
@@ -27,7 +28,7 @@ const AuthNavigator =()=>(
         <Stack.Screen
             name ="Home"
             component={Home}
-            options={{ headerShown:false }}
+            options={{headerShown:false}}
         />
     </Stack.Navigator>
 

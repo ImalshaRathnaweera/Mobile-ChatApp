@@ -2,11 +2,11 @@ import React from 'react';
 import {View,Text} from 'react-native';
 
 
-const Home = () =>{
+const Profile = () =>{
     return(
         <View>
-         <Text>Welcom to the ChatApp</Text>
+            <Text>pro</Text>
         </View>
     );
 }
-export default Home;
+export default Profile;

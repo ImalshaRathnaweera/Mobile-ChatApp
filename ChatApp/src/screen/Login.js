@@ -3,6 +3,9 @@ import {View,Text,StyleSheet, TouchableOpacity,TextInput, Image} from 'react-nat
 import images from '../utils/images'
 import { Store } from '../context/store/store';
 import { LOADING_START, LOADING_STOP } from '../context/action/type';
+import { setAsyncStorage,keys } from '../asyncStorage';
+import {setUniqueValue} from '../utils/constant';
+import {LoginRequest} from '../connection';
 // import {  } from 'react-native-gesture-handler';
 
 
@@ -28,12 +31,29 @@ const Login = ({navigation}) =>{
                 type:LOADING_START,
 
             });
-            setTimeout(()=>{
+
+            LoginRequest(email,password)
+            .then((res)=>{
+                setAsyncStorage(keys.uuid,res.user.uid);
+                setUniqueValue(res.user.uid);
                 dispatchLoaderAction({
                     type:LOADING_STOP,
-    
                 });
-            },2000)
+                navigation.replace("Home");
+                
+            })
+            .catch((err)=>{
+                dispatchLoaderAction({
+                    type:LOADING_STOP,
+                });
+                alert(err);
+            });
+            // setTimeout(()=>{
+            //     dispatchLoaderAction({
+            //         type:LOADING_STOP,
+    
+            //     });
+            // },2000)
         }
        
     };
