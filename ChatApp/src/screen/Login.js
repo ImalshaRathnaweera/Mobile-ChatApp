@@ -96,7 +96,7 @@ const Login = ({navigation}) =>{
             />
 
             <TouchableOpacity style ={styles.buttonContainer} onPress={()=>onLoginPress()}>
-                <Text style ={styles.buttonText}>Continue</Text>
+                <Text style ={styles.buttonText}>SignIn</Text>
             </TouchableOpacity>
             <TouchableOpacity style ={styles.createButtonContainer} onPress={()=>navigation.navigate('Register')}>
                 <Text style ={styles.createbuttonText}>Create Account </Text>
@@ -130,6 +130,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignSelf: 'center',
         
+        
     },
     input:{
         paddingLeft:20,
@@ -137,17 +138,15 @@ const styles = StyleSheet.create({
         height: 50,
         fontSize:18,
         backgroundColor:'white',
-        borderColor:'#800080',
+        borderColor:'#a503fc',
         borderWidth:1,
         marginBottom:10,
-        color:'#34495e',
-        
-
+       
     },
     buttonContainer:{
         height :30,
         borderRadius:50,
-        backgroundColor:'#800080',
+        backgroundColor:'#a503fc',
         paddingVertical:25,
         justifyContent:'center',
         alignItems:'center',
@@ -167,7 +166,7 @@ const styles = StyleSheet.create({
          borderRadius:50,
          backgroundColor:'white',
          paddingVertical:25,
-         borderColor:'#800080',
+         borderColor:'#a503fc',
          borderWidth:1,
          marginTop:20,
          justifyContent:'center',
@@ -178,7 +177,7 @@ const styles = StyleSheet.create({
     createbuttonText:{
         textAlign:'center',
         fontSize:20,
-        color:'#800080',
+        color:'#a503fc',
     }
 
 });

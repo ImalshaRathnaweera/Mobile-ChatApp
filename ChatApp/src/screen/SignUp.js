@@ -182,7 +182,7 @@ const styles = StyleSheet.create({
         height: 50,
         fontSize:18,
         backgroundColor:'white',
-        borderColor:'#800080',
+        borderColor:'#a503fc',
         borderWidth:1,
         marginBottom:10,
         color:'#34495e',
@@ -192,7 +192,7 @@ const styles = StyleSheet.create({
     buttonContainer:{
         height :30,
         borderRadius:50,
-        backgroundColor:'#800080',
+        backgroundColor:'#a503fc',
         paddingVertical:25,
         justifyContent:'center',
         alignItems:'center',

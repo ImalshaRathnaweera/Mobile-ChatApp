@@ -38,19 +38,20 @@ const styles = StyleSheet.create({
     buttonContainer:{
         height :50,
         borderRadius:50,
-        backgroundColor:'#800080',
+        backgroundColor:'#a503fc',
         paddingVertical:25,
         justifyContent:'center',
         alignItems:'center',
-        marginLeft:25,
-        marginRight:25,
+        marginLeft:50,
+        marginRight:50,
         marginTop:60,
+       
         
     },
     buttonText:{
          textAlign:'center',
          fontSize:25,
-         color:'white'
+         color:'white',
 
     }
 
