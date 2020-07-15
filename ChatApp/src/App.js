@@ -4,7 +4,7 @@ import AuthNavigator from './navigation/AuthNavigator';
 import Loader from './component/loader';
 import { StoreProvider } from './context/store/store';
 import DrawerNavigator from './navigation/DrawerNavigator';
-import AuthContext from './context/AuthContext';
+// import AuthContext from './context/AuthContext';
 const App = () => {
   const [user, setUser] = useState(null);
 
