@@ -6,11 +6,18 @@ import SignUp from '../screen/SignUp';
 import Home from '../screen/Home';
 import Session from '../screen/Session';
 
-
 const Stack = createStackNavigator();
 
-const AuthNavigator =()=>(
-    <Stack.Navigator
+const AuthNavigator =({navigation})=>(
+    <Stack.Navigator screenOptions={{
+        headerStyle:{
+            backgroundColor:'#a503fc',
+        },
+        headerTintColor:'white',
+        headerTitleStyle:{
+            color:'white'
+        }
+    }}
           initialRouteName="Session">
         <Stack.Screen
             name="Session"
@@ -37,8 +44,9 @@ const AuthNavigator =()=>(
         <Stack.Screen
             name ="Home"
             component={Home}
-            options = {{headerShown:true}}
-        />
+            options = {{title:"ChatApp",headerShown:true,headerTitleAlign:'center'   
+        }} />
+
     </Stack.Navigator>
 
 )

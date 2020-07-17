@@ -9,7 +9,7 @@ const App = () => {
   const [user, setUser] = useState(null);
 
   // useEffect(() => {
-  //   setUser({ name: "Imalsha akka", userType: "admin", image: "" })
+  //   setUser({ name: "Imalsha", userType: "admin", image: "" })
   // }, [])
 
 

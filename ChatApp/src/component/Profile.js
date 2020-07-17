@@ -1,21 +1,29 @@
-import React, { useContext } from 'react';
-import {View,Text, Button} from 'react-native';
-//zimport AuthContext from '../context/AuthContext';
+import React from "react";
+import { Image, View, Text } from "react-native";
+import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
-
-const Profile = () =>{
-    // const logout=()=>{
-    //     // console.log()
-    //     setUser(null);
-    // }
-    // const {user,setUser} = useContext(AuthContext);
-
-    return(
-        <View>
-            {/* <Button onPress={logout} title="Logout" /> */}
-            {/* <Text>{user.name}</Text> */}
-            <Text>profile</Text>
+export default ({ img, name, onImgTap, onEditImgTap }) => (
+    <View>
+      <View >
+        <TouchableOpacity onPress={onImgTap} activeOpacity={0.8}>
+          {img ? (
+            <Image source={{ uri: img }} resizeMode="cover" />
+          ) : (
+            <View>
+              <Text >{name.charAt(0)}</Text>
+            </View>
+          )}
+        </TouchableOpacity>
+        <View >
+          <FontAwesome5
+            name="user-edit"
+            size={20}
+            onPress={onEditImgTap}
+           
+          />
         </View>
-    );
-}
-export default Profile;
+      </View>
+      <Text>{name}</Text>
+    </View>
+  );
