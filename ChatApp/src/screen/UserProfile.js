@@ -1,14 +1,17 @@
 import React, { useEffect, useContext, useState } from 'react';
-import {StyleSheet} from 'react-native';
+import {View,Text,StyleSheet} from 'react-native';
 import { Store } from '../context/store/store';
 import firebase from '../firebase/config';
 import { LOADING_START, LOADING_STOP } from '../context/action/type';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { FlatList } from 'react-native-gesture-handler';
-import ShowUsers from '../component/ShowUsers';
-//import Profile from '../component/Profile';
+import Profile from '../component/Profile';
 import { uuid } from '../utils/constant';
-const Chats = ({navigation}) =>{
+import ImagePicker from 'react-native-image-picker';
+import UpdateProfile from '../connection/user';
+
+
+const UserProfile = () =>{
     const globalState = useContext(Store);
     const { dispatchLoaderAction } = globalState;
 
@@ -61,46 +64,62 @@ const Chats = ({navigation}) =>{
         }
       }, []);
 
-      const nameTap = (profileImg,name,guestUserId)=>{
-        if(!profileImg){
-          navigation.navigate('UserChat',{
-            name,
-            guestUserId,
-            currentuserId:uuid,
-          });
-        }else{
-            navigation.navigate('UserChat',{
-            name,
-            guestUserId,
-            currentuserId:uuid,
-          });
-        }
-      };
 
+
+      const choicePhoto =()=>{
+        const option ={
+          storageOptions:{
+            skipBakup:true
+          }
+        };
+        ImagePicker.showImagePicker(option,(response)=>{
+          if(response.didCancel){
+            console.log('user cancle image picker')
+          }else if(response.error){
+            console.log('image picker',response.error)
+          }else{
+            let source = 'data:image/jpeg;base64,'+ response.data;
+            dispatchLoaderAction({
+              type:LOADING_START
+            });
+            UpdateProfile(uuid,source)
+            .then(()=>{
+              setUserDetail({
+                ...userDetail,
+                profileImg:source,
+              })
+            })
+            .catch((err)=>{
+              dispatchLoaderAction({
+                type:LOADING_STOP
+              });
+              alert(err)
+            })
+          }
+        })
+      }
     return(
         <SafeAreaView style={styles.container}>
             <FlatList
             alwaysBounceVertical={false}
             data={allUsers}
             keyExtractor={(_,index)=>index.toString()}
-            renderItem={({item})=>(
-                <ShowUsers
-                name={item.name}
-                img={item.profileImg}
-                onNameTap={()=> nameTap(item.profileImg,item.name,item.id)}/>
-            )}
-
+            ListHeaderComponent={
+                <Profile
+                img={profileImg}
+                name={name}
+                onEditImgTap={()=>choicePhoto()}/>
+            }
             />
+          
         </SafeAreaView>
     );
 }
-export default Chats;
+export default UserProfile;
 
 const styles = StyleSheet.create({
   container:{
-    backgroundColor:'#282f43',
-    height:'100%',
-    // alignItems:'center',
+    backgroundColor:'#282f43'
 
   }
 

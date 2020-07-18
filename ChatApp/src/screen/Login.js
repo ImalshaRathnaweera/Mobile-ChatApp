@@ -138,7 +138,7 @@ const styles = StyleSheet.create({
         height: 50,
         fontSize:18,
         backgroundColor:'white',
-        borderColor:'#a503fc',
+        borderColor:'#8d3fd2',
         borderWidth:1,
         marginBottom:10,
        
@@ -146,7 +146,7 @@ const styles = StyleSheet.create({
     buttonContainer:{
         height :30,
         borderRadius:50,
-        backgroundColor:'#a503fc',
+        backgroundColor:'#8d3fd2',
         paddingVertical:25,
         justifyContent:'center',
         alignItems:'center',
@@ -166,7 +166,7 @@ const styles = StyleSheet.create({
          borderRadius:50,
          backgroundColor:'white',
          paddingVertical:25,
-         borderColor:'#a503fc',
+         borderColor:'#8d3fd2',
          borderWidth:1,
          marginTop:20,
          justifyContent:'center',
@@ -177,7 +177,7 @@ const styles = StyleSheet.create({
     createbuttonText:{
         textAlign:'center',
         fontSize:20,
-        color:'#a503fc',
+        color:'#8d3fd2',
     }
 
 });

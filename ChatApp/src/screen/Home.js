@@ -3,8 +3,9 @@ import {Alert} from 'react-native';
 import SimpleLineIcon from 'react-native-vector-icons/SimpleLineIcons';
 import { LogOut } from '../connection';
 import { clearAsyncStorage } from '../asyncStorage';
-// import DrawerNavigator from '../navigation/DrawerNavigator';
 import TabNavigator from '../navigation/TabNavigator';
+
+
 const Home = ({navigation}) =>{
     useLayoutEffect(()=>{
         navigation.setOptions({

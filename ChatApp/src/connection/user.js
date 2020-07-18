@@ -18,3 +18,18 @@ export const AddUser = async(name,email,uid,profileImg)=>{
     }
 };
 
+const UpdateProfile = async(uuid,imagSrc) =>{
+
+    try{
+        return await firebase.database().ref('users/' + uuid)
+        .update({
+            profileImg:imagSrc,
+        });
+
+    }catch(error){
+        return error
+
+    }
+}
+
+export default UpdateProfile;

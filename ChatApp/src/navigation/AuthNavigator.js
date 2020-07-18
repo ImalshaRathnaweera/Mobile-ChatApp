@@ -5,17 +5,23 @@ import Login from '../screen/Login';
 import SignUp from '../screen/SignUp';
 import Home from '../screen/Home';
 import Session from '../screen/Session';
+import UserChat from '../screen/UserChat'
 
 const Stack = createStackNavigator();
 
 const AuthNavigator =({navigation})=>(
     <Stack.Navigator screenOptions={{
         headerStyle:{
-            backgroundColor:'#a503fc',
+            backgroundColor:'#282f43',
+            height:75,
+            borderWidth: 0.5,
+            borderColor:'grey'
         },
         headerTintColor:'white',
         headerTitleStyle:{
-            color:'white'
+            color:'white',
+            fontSize:25,
+             
         }
     }}
           initialRouteName="Session">
@@ -46,6 +52,11 @@ const AuthNavigator =({navigation})=>(
             component={Home}
             options = {{title:"ChatApp",headerShown:true,headerTitleAlign:'center'   
         }} />
+        <Stack.Screen
+             name = "UserChat"
+             component ={UserChat}
+             options = {{headerShown:false}}
+        />
 
     </Stack.Navigator>
 

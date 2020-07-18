@@ -1,29 +1,136 @@
 import React from "react";
-import { Image, View, Text } from "react-native";
-import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
+import { Image, View, Text,StyleSheet } from "react-native";
+import FontAwesome from "react-native-vector-icons/FontAwesome5";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import images from '../utils/images';
 
 export default ({ img, name, onImgTap, onEditImgTap }) => (
-    <View>
-      <View >
+    <View style={styles.container}>
+      <View style= {styles.imgContiner}>
         <TouchableOpacity onPress={onImgTap} activeOpacity={0.8}>
           {img ? (
-            <Image source={{ uri: img }} resizeMode="cover" />
+            <Image style={styles.img1} source={{ uri: img }} resizeMode="cover" />
           ) : (
-            <View>
-              <Text >{name.charAt(0)}</Text>
+            <View > 
+              <Image 
+              source={images.PERSON_LOGO} 
+              style={styles.nameImage}
+          />
             </View>
           )}
         </TouchableOpacity>
-        <View >
-          <FontAwesome5
+        <View style= {styles.editImgContainer}>
+          <FontAwesome
             name="user-edit"
-            size={20}
+            size={50}
             onPress={onEditImgTap}
-           
-          />
+           />
         </View>
       </View>
-      <Text>{name}</Text>
+      <Text style={styles.name}>{name}</Text>
+
+      <TouchableOpacity style={styles.option} >
+      <Image 
+        source={images.SETTING_LOGO} 
+        style={styles.logo}/>
+        <Text style={styles.optionName}>Setting</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.option}>
+      <Image 
+        source={images.PRIVACY_LOGO} 
+        style={styles.logo}/>
+        <Text style={styles.optionName}>Privarcy</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.option}>
+      <Image 
+        source={images. NOTIFICATION_LOGO} 
+        style={styles.logo}/>
+          <Text style={styles.optionName}>Notification</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.option}>
+      <Image 
+        source={images.HELP_LOGO} 
+        style={styles.logo}/>
+          <Text style={styles.optionName}>Help</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.option}>
+      <Image 
+        source={images.INVITE_LOGO} 
+        style={styles.logo}/>
+          <Text style={styles.optionName}>Invite Friends</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.option}>
+      <Image 
+        source={images.LOGOUT_LOGO} 
+        style={styles.logo}/>
+          <Text style={styles.optionName}>LogOut</Text>
+      </TouchableOpacity>
     </View>
+    
   );
+
+
+  const styles = StyleSheet.create({
+    container:{
+      paddingVertical: 10,
+      height:'100%',
+      
+    },
+    imgContiner:{
+      marginTop:20,
+      alignItems:'center',
+      justifyContent:'center',
+      height: 150,
+      width: 150,
+      borderRadius: 100,
+      borderWidth: 2,
+      backgroundColor:'white',
+      borderColor:'#3bcb94',
+      marginLeft:130,
+      marginRight:150,
+
+    },
+    nameImage:{
+      height:150,
+      width: 150,
+      alignItems:'center',
+      justifyContent:'center',
+    },
+    editImgContainer:{
+      height: 40,
+      width: 40,
+      borderRadius: 20,
+      position: "absolute",
+      right: 20,
+      bottom: 10,
+      color:'white',
+    },
+    name:{
+    textAlign:'center',
+    fontSize: 25,
+    fontWeight: "bold",
+    color:'white',
+    marginBottom:40,
+    marginTop:25,
+    },
+    option:{
+     marginBottom:20,
+     height:50,
+    // backgroundColor:'white'
+
+    },
+    optionName:{
+      fontSize: 19,
+      fontWeight: "bold",
+      color:'white',
+      left:115
+    },
+    logo:{
+      height:39,
+      width:39,
+      position:'absolute',
+      left:55,
+    }
+    
+    
+  });

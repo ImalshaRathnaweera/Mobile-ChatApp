@@ -25,7 +25,6 @@ const styles = StyleSheet.create({
         fontSize: 30,
         textAlign:'center',
         padding:50,
-        // color: 'grey'
 
     },
     text:{
@@ -38,7 +37,7 @@ const styles = StyleSheet.create({
     buttonContainer:{
         height :50,
         borderRadius:50,
-        backgroundColor:'#a503fc',
+        backgroundColor:'#8d3fd2',
         paddingVertical:25,
         justifyContent:'center',
         alignItems:'center',

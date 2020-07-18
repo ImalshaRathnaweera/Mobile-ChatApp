@@ -34,21 +34,22 @@ export default ShowUsers;
 
 const styles = StyleSheet.create({
   card:{
-    backgroundColor:'white',
+    backgroundColor:'#282f43',
     borderBottomWidth: 1,
     marginBottom:0,
     marginTop:0, 
     height: 80,
-   
-    
+    borderColor: '#316798',
+  
   },
   cardItem:{
-    backgroundColor:'white',
+    backgroundColor:'#282f43',
+    
   },
   logIma:{
     height: 60,
     width: 60,
-    borderColor: 'white',
+    borderColor: '#3bcb94',
     borderWidth: 2,
     borderRadius: 30,
     alignItems: "center",
@@ -62,7 +63,7 @@ const styles = StyleSheet.create({
   
   proName:{
      fontSize: 18,
-     color: 'black', 
+     color: 'white', 
      fontWeight: "bold" 
   }
 });
