@@ -55,7 +55,7 @@ const AuthNavigator =({navigation})=>(
         <Stack.Screen
              name = "UserChat"
              component ={UserChat}
-             options = {{headerShown:false}}
+             options = {{headerShown:true}}
         />
 
     </Stack.Navigator>

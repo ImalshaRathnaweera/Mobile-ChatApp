@@ -11,4 +11,6 @@ export default{
     HELP_LOGO:require('../component/image/help.png'),
     CALL_LOGO:require('../component/image/call.png'),
     PROFILE_LOGO:require('../component/image/profile.png'),
+    SENDMSG_LOGO:require('../component/image/send.png'),
+    CAMARA_LOGO:require('../component/image/camera.png'),
 }
