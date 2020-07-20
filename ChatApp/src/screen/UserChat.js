@@ -1,43 +1,140 @@
-import React, { useLayoutEffect, Fragment } from 'react';
+import React, { useLayoutEffect, Fragment, useState, useEffect } from 'react';
 import {View,Text,StyleSheet,Image, TouchableOpacity} from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { FlatList, TextInput } from 'react-native-gesture-handler';
+import {SafeAreaView} from 'react-native-safe-area-context';
+import {FlatList,TextInput} from 'react-native-gesture-handler';
 import images from '../utils/images';
-
-
+import ChatBox from '../component/ChatBox';
+import firebase from '../firebase/config';
+import ImagePicker from "react-native-image-picker";
+import { recieverMsg,senderMsg } from '../connection';
 
 const UserChat = ({route,navigation}) => {
     const {params} = route;
-    const{name,guestUserId,currentuserId} = params;
+    const{name,img,guestUserId,currentuserId} = params;
+    const [msgValue,setMsgValue] =useState('');
+    const [messeges,setMessege] = useState([]);
     useLayoutEffect(()=>{
         navigation.setOptions({
         headerTitle:<Text>{name}</Text>
         });
-    },[navigation])
+    },[navigation]);
+
+    useEffect(()=>{
+      //console.log("start" + currentUserId);
+        try {
+            firebase
+              .database()
+              .ref("messeges")
+              .child(currentuserId)
+              .child(guestUserId)
+              .on("value", (dataSnapshot) => {
+                let msgs = [];
+                dataSnapshot.forEach((child) => {
+                  msgs.push({
+                    sendBy: child.val().messege.sender,
+                    recievedBy: child.val().messege.reciever,
+                    msg: child.val().messege.msg,
+                    img: child.val().messege.img,
+                  });
+                });
+               
+                setMessege(msgs.reverse());
+              });
+          }catch(error){
+            
+            console.log( error);
+            alert(error);
+
+        }
+       
+    },[]);
+
+    
+    const handleCamara =()=>{
+        const option = {
+            storageOptions: {
+              skipBackup: true,
+            },
+          };
+      
+          ImagePicker.showImagePicker(option, (response) => {
+            if (response.didCancel) {
+              console.log("User cancel image picker");
+            } else if (response.error) {
+              console.log(" image picker error", response.error);
+            } else {
+              // Base 64
+              let source = "data:image/jpeg;base64," + response.data;
+      
+              senderMsg(msgValue, currentuserId, guestUserId, source)
+                .then(() => {})
+                .catch((err) => alert(err));
+      
+              // * guest user
+      
+              recieverMsg(msgValue, currentuserId, guestUserId, source)
+                .then(() => {})
+                .catch((err) => alert(err));
+            }
+          });
+    };
+
+    const handleSend=()=>{
+        setMsgValue('');
+        if (msgValue) {
+        senderMsg(msgValue, currentuserId, guestUserId,'')
+        .then(() => {})
+        .catch((err) => alert(err));
+
+      // * guest user
+
+      recieverMsg(msgValue, currentuserId, guestUserId,'')
+        .then(() => {})
+        .catch((err) => alert(err));
+    }
+};
+const handleOnChange =(text)=>{
+    setMsgValue(text);
+};
+
     return (
        <SafeAreaView style={styles.continer}>
            <Fragment>
            <FlatList 
-        //    data={(1,2,3)}
+           inverted
+           data={messeges}
            keyExtractor={(_,index)=>index.toString()}
-           renderItem={({item})=><Text style={styles.name}>{name}</Text>}/>
+           renderItem={({item})=>(
+            <ChatBox
+            msg={item.msg}
+            userId ={item.sendBy}
+            img={item.img}
+            onImgTap={()=>imgTap(item.img)}
+            />
+           )}
+           />
 
            <View style={styles.sendMsg}>
                <TextInput style={styles.input}
                placeholder="Type a message..."
-               numberOfLines={10}/> 
+               numberOfLines={10}
+               value={msgValue}
+               onChangeText={(text)=>handleOnChange(text)}
+               /> 
             <View>
-           <TouchableOpacity>   
+           <TouchableOpacity onPress={()=>handleCamara()}>   
            <Image 
              source={images.CAMARA_LOGO} 
-             style={styles.camaralogo}/>
+             style={styles.camaralogo}
+             />
             </TouchableOpacity>
            </View>             
            <View>
-            <TouchableOpacity>   
+            <TouchableOpacity onPress={()=>handleSend()}>   
            <Image 
              source={images.SENDMSG_LOGO} 
-             style={styles.logo}/>
+             style={styles.logo}
+            />
             </TouchableOpacity>
            
            </View>

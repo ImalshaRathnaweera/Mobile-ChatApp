@@ -1,17 +1,18 @@
 import React, { useEffect, useContext, useState } from 'react';
-import {View,Text,StyleSheet} from 'react-native';
+import {View,Text,StyleSheet,Image} from 'react-native';
 import { Store } from '../context/store/store';
 import firebase from '../firebase/config';
 import { LOADING_START, LOADING_STOP } from '../context/action/type';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { FlatList } from 'react-native-gesture-handler';
+import { FlatList ,TouchableOpacity} from 'react-native-gesture-handler';
 import Profile from '../component/Profile';
 import { uuid } from '../utils/constant';
 import ImagePicker from 'react-native-image-picker';
 import UpdateProfile from '../connection/user';
+import images from '../utils/images';
 
 
-const UserProfile = () =>{
+const UserProfile = ({navigation}) =>{
     const globalState = useContext(Store);
     const { dispatchLoaderAction } = globalState;
 
@@ -111,6 +112,44 @@ const UserProfile = () =>{
                 onEditImgTap={()=>choicePhoto()}/>
             }
             />
+            <View style={styles.bottmcontainer}>
+            <TouchableOpacity style={styles.option} onPress={()=>navigation.navigate('setting')}>
+            <Image 
+              source={images.SETTING_LOGO} 
+              style={styles.logo}/>
+              <Text style={styles.optionName}>Setting</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.option}>
+            <Image 
+              source={images.PRIVACY_LOGO} 
+              style={styles.logo}/>
+              <Text style={styles.optionName}>Privacy</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.option}>
+            <Image 
+              source={images. NOTIFICATION_LOGO} 
+              style={styles.logo}/>
+                <Text style={styles.optionName}>Notification</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.option}>
+            <Image 
+              source={images.HELP_LOGO} 
+              style={styles.logo}/>
+                <Text style={styles.optionName}>Help</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.option}>
+            <Image 
+              source={images.INVITE_LOGO} 
+              style={styles.logo}/>
+                <Text style={styles.optionName}>Invite Friends</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.option}>
+            <Image 
+              source={images.LOGOUT_LOGO} 
+              style={styles.logo}/>
+                <Text style={styles.optionName}>LogOut</Text>
+            </TouchableOpacity>
+            </View>
           
         </SafeAreaView>
     );
@@ -119,8 +158,30 @@ export default UserProfile;
 
 const styles = StyleSheet.create({
   container:{
-    backgroundColor:'#282f43'
+    backgroundColor:'#282f43',
+    flex:1
 
-  }
+  },
+  logo:{
+    height:39,
+    width:39,
+    position:'absolute',
+    left:55,
+  },
+  optionName:{
+    fontSize: 19,
+    fontWeight: "bold",
+    color:'white',
+    left:115
+  },
+   option:{
+     marginBottom:20,
+     height:50,
+    // backgroundColor:'white'
+
+    },
+    bottmcontainer:{
+     
+    }
 
 });

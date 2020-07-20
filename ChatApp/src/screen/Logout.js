@@ -1,12 +1,12 @@
 import React, { useLayoutEffect } from 'react';
-import { Alert} from 'react-native';
+import {Alert} from 'react-native';
 import SimpleLineIcon from 'react-native-vector-icons/SimpleLineIcons';
 import { LogOut } from '../connection';
 import { clearAsyncStorage } from '../asyncStorage';
+import TabNavigator from '../navigation/TabNavigator';
 
 
-
-const Logout = ({navigation}) =>{
+const Home = ({navigation}) =>{
     useLayoutEffect(()=>{
         navigation.setOptions({
             headerRight:()=>(
@@ -45,6 +45,6 @@ const Logout = ({navigation}) =>{
         })
         .catch((err)=>alert(err))
     }
-    
+  
 }
-export default Logout;
+export default Home;

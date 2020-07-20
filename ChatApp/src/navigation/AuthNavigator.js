@@ -5,7 +5,8 @@ import Login from '../screen/Login';
 import SignUp from '../screen/SignUp';
 import Home from '../screen/Home';
 import Session from '../screen/Session';
-import UserChat from '../screen/UserChat'
+import UserChat from '../screen/UserChat';
+import Setting from '../screen/Setting';
 
 const Stack = createStackNavigator();
 
@@ -57,6 +58,12 @@ const AuthNavigator =({navigation})=>(
              component ={UserChat}
              options = {{headerShown:true}}
         />
+        <Stack.Screen
+             name = "setting"
+             component ={Setting}
+             options = {{headerShown:true}}
+        />
+
 
     </Stack.Navigator>
 

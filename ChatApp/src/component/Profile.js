@@ -1,6 +1,6 @@
 import React from "react";
 import { Image, View, Text,StyleSheet } from "react-native";
-import FontAwesome from "react-native-vector-icons/FontAwesome5";
+// import FontAwesome from "react-native-vector-icons/FontAwesome5";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import images from '../utils/images';
 
@@ -20,16 +20,17 @@ export default ({ img, name, onImgTap, onEditImgTap }) => (
           )}
         </TouchableOpacity>
         <View style= {styles.editImgContainer}>
-          <FontAwesome
-            name="user-edit"
-            size={50}
-            onPress={onEditImgTap}
-           />
+           <TouchableOpacity  onPress={onEditImgTap}>   
+           <Image 
+             source={images.CAMARA_LOGO} 
+             style={styles.camaralogo}
+            />
+            </TouchableOpacity>
         </View>
       </View>
       <Text style={styles.name}>{name}</Text>
 
-      <TouchableOpacity style={styles.option} >
+      {/* <TouchableOpacity style={styles.option}>
       <Image 
         source={images.SETTING_LOGO} 
         style={styles.logo}/>
@@ -39,7 +40,7 @@ export default ({ img, name, onImgTap, onEditImgTap }) => (
       <Image 
         source={images.PRIVACY_LOGO} 
         style={styles.logo}/>
-        <Text style={styles.optionName}>Privarcy</Text>
+        <Text style={styles.optionName}>Privacy</Text>
       </TouchableOpacity>
       <TouchableOpacity style={styles.option}>
       <Image 
@@ -64,7 +65,7 @@ export default ({ img, name, onImgTap, onEditImgTap }) => (
         source={images.LOGOUT_LOGO} 
         style={styles.logo}/>
           <Text style={styles.optionName}>LogOut</Text>
-      </TouchableOpacity>
+      </TouchableOpacity> */}
     </View>
     
   );
@@ -73,8 +74,7 @@ export default ({ img, name, onImgTap, onEditImgTap }) => (
   const styles = StyleSheet.create({
     container:{
       paddingVertical: 10,
-      height:'100%',
-      
+      flex:1
     },
     imgContiner:{
       marginTop:20,
@@ -90,6 +90,12 @@ export default ({ img, name, onImgTap, onEditImgTap }) => (
       marginRight:150,
 
     },
+    camaralogo:{
+      height:40,
+      width:40,
+      
+    },
+
     nameImage:{
       height:150,
       width: 150,
@@ -110,27 +116,26 @@ export default ({ img, name, onImgTap, onEditImgTap }) => (
     fontSize: 25,
     fontWeight: "bold",
     color:'white',
-    marginBottom:40,
-    marginTop:25,
+    marginTop:15,
     },
-    option:{
-     marginBottom:20,
-     height:50,
-    // backgroundColor:'white'
+    // option:{
+    //  marginBottom:20,
+    //  height:50,
+    // // backgroundColor:'white'
 
-    },
-    optionName:{
-      fontSize: 19,
-      fontWeight: "bold",
-      color:'white',
-      left:115
-    },
-    logo:{
-      height:39,
-      width:39,
-      position:'absolute',
-      left:55,
-    }
+    // },
+    // optionName:{
+    //   fontSize: 19,
+    //   fontWeight: "bold",
+    //   color:'white',
+    //   left:115
+    // },
+    // logo:{
+    //   height:39,
+    //   width:39,
+    //   position:'absolute',
+    //   left:55,
+    // }
     
     
   });

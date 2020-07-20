@@ -6,8 +6,9 @@ import { LOADING_START, LOADING_STOP } from '../context/action/type';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { FlatList } from 'react-native-gesture-handler';
 import ShowUsers from '../component/ShowUsers';
-//import Profile from '../component/Profile';
 import { uuid } from '../utils/constant';
+
+
 const Chats = ({navigation}) =>{
     const globalState = useContext(Store);
     const { dispatchLoaderAction } = globalState;

@@ -1,11 +1,42 @@
 import React from 'react';
-import {View,Text} from 'react-native';
+import {View,Text, TouchableOpacity,StyleSheet} from 'react-native';
+import { Card } from "native-base";
 const Setting = () =>{
 
     return(
-        <View>
-            <Text>Setting</Text>
+        <View style={styles.container}>
+            <View style={styles.nameContainer}>
+           <TouchableOpacity>
+               <Text style={styles.topic}>Update Profile</Text>
+           </TouchableOpacity>
+           </View>
+           <View style={styles.nameContainer}>
+           <TouchableOpacity >
+               <Text style={styles.topic}>Change Password</Text>
+           </TouchableOpacity>
+           </View> 
+           <View style={styles.nameContainer}>
+           <TouchableOpacity >
+               <Text style={styles.topic}>Account Information</Text>
+           </TouchableOpacity>
+           </View>
         </View>
     );
 }
 export default Setting;
+
+const styles= StyleSheet.create({
+    container:{
+        backgroundColor:'#282f43',
+        flex:1,
+    },
+    topic:{
+        color:'white',
+        fontSize:18,
+    },
+    nameContainer:{
+        height:30,
+        marginLeft:15,
+        marginTop:20
+    }
+})
