@@ -14,13 +14,13 @@ const AuthNavigator =({navigation})=>(
     <Stack.Navigator screenOptions={{
         headerStyle:{
             backgroundColor:'#282f43',
-            height:75,
-            borderWidth: 0.5,
-            borderColor:'grey'
+            height:60,
+            //borderWidth: 0.5,
+            //borderColor:'grey'
         },
-        headerTintColor:'white',
+        // headerTintColor:'black',
         headerTitleStyle:{
-            color:'white',
+            color:'grey',
             fontSize:25,
              
         }
@@ -51,7 +51,7 @@ const AuthNavigator =({navigation})=>(
         <Stack.Screen
             name ="Home"
             component={Home}
-            options = {{title:"ChatApp",headerShown:true,headerTitleAlign:'center'   
+            options = {{title:"ChatApp",headerShown:true,headerTitleAlign:'center', 
         }} />
         <Stack.Screen
              name = "UserChat"

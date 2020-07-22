@@ -143,12 +143,12 @@ const UserProfile = ({navigation}) =>{
               style={styles.logo}/>
                 <Text style={styles.optionName}>Invite Friends</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.option}>
+            {/* <TouchableOpacity style={styles.option}>
             <Image 
               source={images.LOGOUT_LOGO} 
               style={styles.logo}/>
                 <Text style={styles.optionName}>LogOut</Text>
-            </TouchableOpacity>
+            </TouchableOpacity> */}
             </View>
           
         </SafeAreaView>
@@ -175,9 +175,8 @@ const styles = StyleSheet.create({
     left:115
   },
    option:{
-     marginBottom:20,
+     marginBottom:30,
      height:50,
-    // backgroundColor:'white'
 
     },
     bottmcontainer:{

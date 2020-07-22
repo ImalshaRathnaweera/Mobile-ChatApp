@@ -1,5 +1,5 @@
 import React, { useEffect, useContext, useState } from 'react';
-import {StyleSheet} from 'react-native';
+import {StyleSheet,Image} from 'react-native';
 import { Store } from '../context/store/store';
 import firebase from '../firebase/config';
 import { LOADING_START, LOADING_STOP } from '../context/action/type';
@@ -7,6 +7,9 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { FlatList } from 'react-native-gesture-handler';
 import ShowUsers from '../component/ShowUsers';
 import { uuid } from '../utils/constant';
+// import { Header } from 'react-native/Libraries/NewAppScreen';
+import {Header, Item,Icon, Input} from 'native-base';
+import images from '../utils/images';
 
 
 const Chats = ({navigation}) =>{
@@ -80,6 +83,19 @@ const Chats = ({navigation}) =>{
 
     return(
         <SafeAreaView style={styles.container}>
+          <Header searchBar rounded style={styles.searchBar}>
+            <Item style={styles.itembar}>
+              <Input 
+              placeholder="Search....."
+              autoCorrect={false}
+              returnKeyType="done"
+              style={styles.input}/>
+            <Image 
+             source={images. SEARCH_LOGO} 
+             style={styles.logo}
+            />
+            </Item>
+          </Header>
             <FlatList
             alwaysBounceVertical={false}
             data={allUsers}
@@ -103,6 +119,25 @@ const styles = StyleSheet.create({
     height:'100%',
     // alignItems:'center',
 
-  }
+  },
+  searchBar:{
+    backgroundColor:'#282f43',
+    borderRadius:70,
+  },
+  itembar:{
+    borderRadius:70,
+    flexDirection:'row',
+    backgroundColor:'grey'
+  },
+  logo:{
+    height:30,
+    width:30,
+    marginRight:6   
+},
+input:{
+  fontSize:20,
+  marginLeft:10
+}
+
 
 });

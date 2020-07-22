@@ -35,7 +35,6 @@ const TabNavigator = ()=>{
                   <Image 
                   source={images.CHAT_LOGO} 
                   style={styles.Logo}/>
-                  //<MaterialCommunityIcons name="account" color="#8d3fd2"  size={40} />
                 ),
               }}/>
             <Tab.Screen name ="Call" component ={Call}
@@ -45,7 +44,6 @@ const TabNavigator = ()=>{
                   <Image 
                   source={images.CALL_LOGO} 
                   style={styles.Logo}/>
-                  // <MaterialCommunityIcons name="account" color="#8d3fd2" size={40} />
                 ),
               }}/>
             <Tab.Screen name ="UserProfile" component={UserProfile}
@@ -55,7 +53,6 @@ const TabNavigator = ()=>{
                   <Image 
                   source={images.PROFILE_LOGO} 
                   style={styles.Logo}/>
-                  // <MaterialCommunityIcons name="account" color="#8d3fd2" size={40}/>
                 ),
               }}/>
         </Tab.Navigator>

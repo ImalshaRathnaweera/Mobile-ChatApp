@@ -13,4 +13,5 @@ export default{
     PROFILE_LOGO:require('../component/image/profile.png'),
     SENDMSG_LOGO:require('../component/image/send.png'),
     CAMARA_LOGO:require('../component/image/camera.png'),
+    SEARCH_LOGO:require('../component/image/search.png'),
 }

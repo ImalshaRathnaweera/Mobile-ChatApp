@@ -33,3 +33,20 @@ const UpdateProfile = async(uuid,imagSrc) =>{
 }
 
 export default UpdateProfile;
+
+export const UpdateDetails = async(uuid,name,email) =>{
+
+    try{
+        return await firebase.database().ref('users/' + uuid)
+        .update({
+            name:name,
+            email:email
+        });
+
+    }catch(error){
+        return error
+
+    }
+}
+
+ 
