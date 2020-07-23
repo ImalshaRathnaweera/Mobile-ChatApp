@@ -1,17 +1,17 @@
 import React from 'react';
 import {View,Text, TouchableOpacity,StyleSheet} from 'react-native';
 import { Card } from "native-base";
-const Setting = () =>{
+const Setting = ({navigation}) =>{
 
     return(
         <View style={styles.container}>
             <View style={styles.nameContainer}>
-           <TouchableOpacity>
+           <TouchableOpacity onPress={()=>navigation.navigate('updateProfile')}>
                <Text style={styles.topic}>Update Profile</Text>
            </TouchableOpacity>
            </View>
            <View style={styles.nameContainer}>
-           <TouchableOpacity >
+           <TouchableOpacity onPress ={()=>navigation.navigate('changePassword')}>
                <Text style={styles.topic}>Change Password</Text>
            </TouchableOpacity>
            </View> 

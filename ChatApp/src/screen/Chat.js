@@ -10,6 +10,7 @@ import { uuid } from '../utils/constant';
 // import { Header } from 'react-native/Libraries/NewAppScreen';
 import {Header, Item,Icon, Input} from 'native-base';
 import images from '../utils/images';
+import _ from "lodash";
 
 
 const Chats = ({navigation}) =>{
@@ -23,6 +24,8 @@ const Chats = ({navigation}) =>{
       });
       const{name,profileImg}=userDetail;
       const [allUsers, setAllUsers] = useState([]);
+      //search 
+      const [searchValue, setSearchValue] = useState("");
       useEffect(() => {
         dispatchLoaderAction({
           type: LOADING_START,
@@ -80,16 +83,28 @@ const Chats = ({navigation}) =>{
           });
         }
       };
+       //search call
+      const handleSearch = (text)=>{
+        // console.log(text);
+          const formatQuery = text.toLowerCase();
+        // const result = formatQuery.filter()
+         setSearchValue(text);
+         console.log(formatQuery);
+
+
+      };
 
     return(
         <SafeAreaView style={styles.container}>
           <Header searchBar rounded style={styles.searchBar}>
             <Item style={styles.itembar}>
               <Input 
-              placeholder="Search....."
+              placeholder="Search here....."
               autoCorrect={false}
               returnKeyType="done"
-              style={styles.input}/>
+              style={styles.input}
+              value={searchValue}
+              onChangeText={(text)=>handleSearch(text)}/>
             <Image 
              source={images. SEARCH_LOGO} 
              style={styles.logo}

@@ -2,29 +2,41 @@ import React from 'react';
 import {View ,Text,TextInput,StyleSheet,TouchableOpacity} from 'react-native';
 
 
-const UpdateProfile =({navigation}) =>{
+const ChangePassword =({navigation}) =>{
     return(
         <View style={styles.container}>
             <View style={styles.formContainer}>
-            <TextInput style={styles.input}
-            placeholder=" Enter User name"
-            // value={name}
+            <TextInput style ={styles.input}
+            placeholder="Enter Current Password"
+            // value={password}
             returnKeyType="next"
-            autoCapitalize="none"
+            secureTextEntry
             autoCorrect={false}
-            onChangeText ={(text)=>handleOnChange('name',text)}
+           // onChangeText ={(text)=>handleOnChange('password',text)}
 
+           
             />
-             <TextInput style={styles.input}
-            placeholder="Enter Email"
-            // value={email}
+            <TextInput style ={styles.input}
+            placeholder="Enter New Password"
+           // value={password}
             returnKeyType="next"
-            keyboardType="email-address"
-            autoCapitalize="none"
+            secureTextEntry
             autoCorrect={false}
-            onChangeText ={(text)=>handleOnChange('email',text)}
+            // onChangeText ={(text)=>handleOnChange('password',text)}
 
+           
             />
+            
+            <TextInput style ={styles.input}
+             placeholder="Enter Confirm Password"
+            //  value={password}
+             returnKeyType="next"
+             secureTextEntry
+             autoCorrect={false}
+            //  onChangeText ={(text)=>handleOnChange('password',text)}
+ 
+            
+             />
              <TouchableOpacity style ={styles.buttonContainer} onPress>
                 <Text style ={styles.buttonText}>Save</Text>
             </TouchableOpacity>
@@ -35,7 +47,7 @@ const UpdateProfile =({navigation}) =>{
 
 }
 
-export default UpdateProfile;
+export default ChangePassword;
 
 const styles = StyleSheet.create({
     container:{

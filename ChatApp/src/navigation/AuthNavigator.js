@@ -7,6 +7,9 @@ import Home from '../screen/Home';
 import Session from '../screen/Session';
 import UserChat from '../screen/UserChat';
 import Setting from '../screen/Setting';
+import UpdateProfile  from '../screen/UpdateProfile';
+import ForgotPassword from '../screen/ForgotPassword';
+import ChangePassword from '../screen/ChangePassword';
 
 const Stack = createStackNavigator();
 
@@ -18,11 +21,12 @@ const AuthNavigator =({navigation})=>(
             //borderWidth: 0.5,
             //borderColor:'grey'
         },
-        // headerTintColor:'black',
+        
+        headerTintColor:'#9da8a3',
         headerTitleStyle:{
-            color:'grey',
+            color:'#9da8a3',
             fontSize:25,
-             
+            
         }
     }}
           initialRouteName="Session">
@@ -49,6 +53,12 @@ const AuthNavigator =({navigation})=>(
              options = {{headerShown:false}}
         />
         <Stack.Screen
+             name="ForgotPassword"
+             component={ForgotPassword}
+             options ={{headerShown:false}}
+        
+        />
+        <Stack.Screen
             name ="Home"
             component={Home}
             options = {{title:"ChatApp",headerShown:true,headerTitleAlign:'center', 
@@ -63,6 +73,17 @@ const AuthNavigator =({navigation})=>(
              component ={Setting}
              options = {{headerShown:true}}
         />
+        <Stack.Screen
+             name = "updateProfile"
+             component ={UpdateProfile}
+             options = {{headerShown:true ,title:"Update Profile"}}
+        />
+        <Stack.Screen
+             name = "changePassword"
+             component ={ChangePassword}
+             options = {{headerShown:true ,title:"Change Password"}}
+        />
+
 
 
     </Stack.Navigator>

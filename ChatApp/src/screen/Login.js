@@ -101,6 +101,10 @@ const Login = ({navigation}) =>{
             <TouchableOpacity style ={styles.createButtonContainer} onPress={()=>navigation.navigate('Register')}>
                 <Text style ={styles.createbuttonText}>Create Account </Text>
             </TouchableOpacity>
+            <TouchableOpacity  style = {styles.forgotpassword}onPress={()=>navigation.navigate('ForgotPassword')}>
+                <Text style={styles.forgotText}>Forgot Password?</Text>
+            </TouchableOpacity>
+            
             </View> 
             
         </View>
@@ -118,7 +122,8 @@ const styles = StyleSheet.create({
         
     },
     topImage:{
-        width: 300, height: 200,
+        width: 300,
+        height: 200,
         justifyContent: 'center',
         alignSelf: 'center',
         // marginBottom:100,
@@ -178,6 +183,17 @@ const styles = StyleSheet.create({
         textAlign:'center',
         fontSize:20,
         color:'#8d3fd2',
+    },
+    forgotpassword:{
+        alignItems:'center',
+        marginTop:15,
+        // color:'#8d3fd2'
+    },
+    forgotText:{
+        fontSize:18,
+        color:'#8d3fd2'
+        
+
     }
 
 });
