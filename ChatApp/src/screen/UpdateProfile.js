@@ -1,21 +1,98 @@
-import React from 'react';
+import React, { useEffect, useContext, useState } from 'react';
 import {View ,Text,TextInput,StyleSheet,TouchableOpacity} from 'react-native';
+import { Store } from '../context/store/store';
+import firebase from '../firebase/config';
+import { uuid } from '../utils/constant';
+import { LOADING_START, LOADING_STOP } from '../context/action/type';
+import { UpdateDetails } from '../connection';
 
 
 const UpdateProfile =({navigation}) =>{
+    const globalState = useContext(Store);
+    const { dispatchLoaderAction } = globalState;
+
+    const [userDetail, setUserDetail] = useState({
+        id: "",
+        name: "",
+      });
+      const{name}=userDetail;
+      const [allUsers, setAllUsers] = useState([]);
+      useEffect(() => {
+        dispatchLoaderAction({
+          type: LOADING_START,
+        });
+        try {
+          firebase
+            .database()
+            .ref("users")
+            .on("value", (dataSnapshot) => {
+              let users = [];
+              let currentUser = {
+                id: "",
+                name: "",
+              };
+              dataSnapshot.forEach((child) => {
+                if (uuid === child.val().uuid) {
+                  currentUser.id = uuid;
+                  currentUser.name = child.val().name;
+                } else {
+                  users.push({
+                    id: child.val().uuid,
+                    name: child.val().name,
+                  });
+                }
+              });
+              setUserDetail(currentUser);
+              setAllUsers(users);
+              dispatchLoaderAction({
+                type: LOADING_STOP,
+              });
+            });
+        } catch (error) {
+          alert(error);
+          dispatchLoaderAction({
+            type: LOADING_STOP,
+          });
+        }
+      }, []);
+
+      const onUpdate =()=>{
+        UpdateDetails(uuid,name)
+            .then(()=>{
+              setUserDetail({
+                ...userDetail,
+                name:name,
+              });
+            //   navigation.navigate('Setting');
+            })
+            .catch((err)=>{
+              dispatchLoaderAction({
+                type:LOADING_STOP
+              });
+              alert(err)
+            })
+      };
+
+const handleOnChange = (name,value)=>{
+        setUserDetail({
+            ...userDetail,
+            [name]:value,
+        })
+    }
+
     return(
         <View style={styles.container}>
             <View style={styles.formContainer}>
             <TextInput style={styles.input}
             placeholder=" Enter User name"
-            // value={name}
+            value={name}
             returnKeyType="next"
             autoCapitalize="none"
             autoCorrect={false}
             onChangeText ={(text)=>handleOnChange('name',text)}
 
             />
-             <TextInput style={styles.input}
+             {/* <TextInput style={styles.input}
             placeholder="Enter Email"
             // value={email}
             returnKeyType="next"
@@ -24,8 +101,8 @@ const UpdateProfile =({navigation}) =>{
             autoCorrect={false}
             onChangeText ={(text)=>handleOnChange('email',text)}
 
-            />
-             <TouchableOpacity style ={styles.buttonContainer} onPress>
+            /> */}
+             <TouchableOpacity style ={styles.buttonContainer}  onPress={()=>onUpdate()}>
                 <Text style ={styles.buttonText}>Save</Text>
             </TouchableOpacity>
 

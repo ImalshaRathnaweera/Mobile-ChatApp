@@ -10,10 +10,9 @@ import { uuid } from '../utils/constant';
 // import { Header } from 'react-native/Libraries/NewAppScreen';
 import {Header, Item,Icon, Input} from 'native-base';
 import images from '../utils/images';
-import _ from "lodash";
-
 
 const Chats = ({navigation}) =>{
+    
     const globalState = useContext(Store);
     const { dispatchLoaderAction } = globalState;
 
@@ -21,11 +20,12 @@ const Chats = ({navigation}) =>{
         id: "",
         name: "",
         profileImg: "",
+        
       });
       const{name,profileImg}=userDetail;
-      const [allUsers, setAllUsers] = useState([]);
+      const [allUsers, setAllUsers,setSearchResult] = useState([]);
       //search 
-      const [searchValue, setSearchValue] = useState("");
+      const [searchTerm, setSearchTerm] = useState("");
       useEffect(() => {
         dispatchLoaderAction({
           type: LOADING_START,
@@ -66,7 +66,20 @@ const Chats = ({navigation}) =>{
             type: LOADING_STOP,
           });
         }
+        
+        //search function
+       // const result = allUsers.filter(item=>item.toLowerCase().includes(searchTerm));
+        //console.log(result);
+        // setSearchResult(result);
       }, []);
+
+      //search
+      // useEffect(()=>{
+      //   const result = allUsers.filter(item=>item.toLowerCase().includes(searchTerm)
+      //   );
+      //   setSearchResult(result);
+
+      // },[searchTerm]);
 
       const nameTap = (profileImg,name,guestUserId)=>{
         if(!profileImg){
@@ -84,15 +97,9 @@ const Chats = ({navigation}) =>{
         }
       };
        //search call
-      const handleSearch = (text)=>{
-        // console.log(text);
-          const formatQuery = text.toLowerCase();
-        // const result = formatQuery.filter()
-         setSearchValue(text);
-         console.log(formatQuery);
-
-
-      };
+      const handleSearch = ()=>{
+        setSearchTerm()
+       } ;    
 
     return(
         <SafeAreaView style={styles.container}>
@@ -103,8 +110,8 @@ const Chats = ({navigation}) =>{
               autoCorrect={false}
               returnKeyType="done"
               style={styles.input}
-              value={searchValue}
-              onChangeText={(text)=>handleSearch(text)}/>
+              value={searchTerm}
+              onChangeText={()=>handleSearch()}/>
             <Image 
              source={images. SEARCH_LOGO} 
              style={styles.logo}
