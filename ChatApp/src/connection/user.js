@@ -1,32 +1,32 @@
 import firebase from '../firebase/config';
 
-export const AddUser = async(name,email,uid,profileImg)=>{
-    try{
+export const AddUser = async (name, email, uid, profileImg) => {
+    try {
         return await firebase
-        .database()
-        .ref('users/'+ uid)
-        .set({
-            name:name,
-            email:email,
-            uuid:uid,
-            profileImg:profileImg,
-        });
+            .database()
+            .ref('users/' + uid)
+            .set({
+                name: name,
+                email: email,
+                uuid: uid,
+                profileImg: profileImg,
+            });
 
-    }catch(error){
+    } catch (error) {
         return error;
 
     }
 };
 
-const UpdateProfile = async(uuid,imagSrc) =>{
+const UpdateProfile = async (uuid, imagSrc) => {
 
-    try{
+    try {
         return await firebase.database().ref('users/' + uuid)
-        .update({
-            profileImg:imagSrc,
-        });
+            .update({
+                profileImg: imagSrc,
+            });
 
-    }catch(error){
+    } catch (error) {
         return error
 
     }
@@ -34,19 +34,19 @@ const UpdateProfile = async(uuid,imagSrc) =>{
 
 export default UpdateProfile;
 
-export const UpdateDetails = async(uuid,name) =>{
+export const UpdateDetails = async (uuid, name) => {
 
-    try{
+    try {
         return await firebase.database().ref('users/' + uuid)
-        .update({
-            name:name,
-            // email:email
-        });
+            .update({
+                name: name,
+                // email:email
+            });
 
-    }catch(error){
+    } catch (error) {
         return error
 
     }
 }
 
- 
+

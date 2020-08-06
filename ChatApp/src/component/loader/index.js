@@ -1,5 +1,5 @@
-import React,{useContext} from 'react'
-import { ActivityIndicator,View,StyleSheet,Dimensions, Platform} from 'react-native';
+import React, { useContext } from 'react'
+import { ActivityIndicator, View, StyleSheet, Dimensions, Platform } from 'react-native';
 import { Store } from '../../context/store/store';
 
 
@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     alignItems: "center",
     justifyContent: "center",
-   // backgroundColor: color.SEMI_TRANSPARENT,
+    // backgroundColor: color.SEMI_TRANSPARENT,
   },
   indicator: {
     // backgroundColor: color.DARK_GRAY,
@@ -32,14 +32,14 @@ const Loader = () => {
   const globalState = useContext(Store);
   const { mapLoaderState } = globalState;
   const { loading } = mapLoaderState;
-//  let loading =false;
+  //  let loading =false;
   return loading ? (
     <View style={styles.loaderContainer}>
       <View style={styles.indicator}>
         <ActivityIndicator
           size="large"
           animating={loading}
-        //   color={color.WHITE}
+          //   color={color.WHITE}
           style={{
             left: Platform.OS === "ios" ? 1.3 : 0,
             top: Platform.OS === "ios" ? 1 : 0,

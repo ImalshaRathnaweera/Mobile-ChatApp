@@ -1,10 +1,10 @@
 import firebase from '../firebase/config';
 
-const ResetPasswordRequest = async(email)=>{
-    try{
+const ResetPasswordRequest = async (email) => {
+    try {
         return await firebase.auth().sendPasswordResetEmail(email);
 
-    }catch(error){
+    } catch (error) {
 
         return error;
 

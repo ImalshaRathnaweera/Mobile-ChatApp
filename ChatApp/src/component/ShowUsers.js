@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, TouchableOpacity,StyleSheet,Image} from "react-native";
+import { Text, TouchableOpacity, StyleSheet, Image } from "react-native";
 import { Card, CardItem, Left, Body, Thumbnail } from "native-base";
 import images from '../utils/images';
 
@@ -12,11 +12,11 @@ const ShowUsers = ({ name, img, onImgTap, onNameTap }) => {
             {img ? (
               <Thumbnail source={{ uri: img }} resizeMode="cover" />
             ) : (
-              <Image 
-              source={images.PERSON_LOGO} 
-              style={styles.nameImage}
-          />
-            )}
+                <Image
+                  source={images.PERSON_LOGO}
+                  style={styles.nameImage}
+                />
+              )}
           </TouchableOpacity>
 
           <Body>
@@ -33,20 +33,20 @@ const ShowUsers = ({ name, img, onImgTap, onNameTap }) => {
 export default ShowUsers;
 
 const styles = StyleSheet.create({
-  card:{
-    backgroundColor:'#282f43',
+  card: {
+    backgroundColor: '#282f43',
     borderBottomWidth: 1,
-    marginBottom:0,
-    marginTop:0, 
+    marginBottom: 0,
+    marginTop: 0,
     height: 80,
     borderColor: '#316798',
-  
+
   },
-  cardItem:{
-    backgroundColor:'#282f43',
-    
+  cardItem: {
+    backgroundColor: '#282f43',
+
   },
-  logIma:{
+  logIma: {
     height: 60,
     width: 60,
     borderColor: '#3bcb94',
@@ -56,14 +56,14 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     backgroundColor: 'white',
   },
-  nameImage:{
+  nameImage: {
     height: 50,
     width: 50,
   },
-  
-  proName:{
-     fontSize: 18,
-     color: 'white', 
-     fontWeight: "bold" 
+
+  proName: {
+    fontSize: 18,
+    color: 'white',
+    fontWeight: "bold"
   }
 });

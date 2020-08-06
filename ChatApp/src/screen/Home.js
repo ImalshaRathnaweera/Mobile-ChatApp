@@ -11,22 +11,22 @@ const Home = ({ navigation }) => {
     useLayoutEffect(() => {
         navigation.setOptions({
             headerRight: () => (
-                <TouchableOpacity 
+                <TouchableOpacity
                     onPress={() => Alert.alert('Logout', 'Are you sure to logout', [
-                    {
-                        text: 'Yes',
-                        onPress: () => logout(),
-                    },
-                    {
-                        text: 'No',
+                        {
+                            text: 'Yes',
+                            onPress: () => logout(),
+                        },
+                        {
+                            text: 'No',
 
-                    },
-                ],
-                    {
-                        cancelable: false,
-                    },
-                )
-                }>
+                        },
+                    ],
+                        {
+                            cancelable: false,
+                        },
+                    )
+                    }>
                     <Image
                         source={images.LOGOUT_LOGO}
                         style={styles.logo}
@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
     logo: {
         height: 30,
         width: 30,
-        marginRight:10,
+        marginRight: 10,
     },
 
 

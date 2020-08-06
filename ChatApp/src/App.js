@@ -9,10 +9,10 @@ const App = () => {
 
   return (
     <StoreProvider>
-        <NavigationContainer>
-          <AuthNavigator />
-          <Loader />
-        </NavigationContainer>
+      <NavigationContainer>
+        <AuthNavigator />
+        <Loader />
+      </NavigationContainer>
     </StoreProvider>
 
   );

@@ -1,236 +1,236 @@
-import React,{useState, useContext} from 'react';
-import {View,Text,StyleSheet, TouchableOpacity,TextInput, Image} from 'react-native';
+import React, { useState, useContext } from 'react';
+import { View, Text, StyleSheet, TouchableOpacity, TextInput, Image } from 'react-native';
 import images from '../utils/images';
 import { Store } from '../context/store/store';
 import { LOADING_START, LOADING_STOP } from '../context/action/type';
-import {setAsyncStorage,keys} from '../asyncStorage';
-import {setUniqueValue} from '../utils/constant';
-import {SignUpRequest,AddUser} from '../connection';
+import { setAsyncStorage, keys } from '../asyncStorage';
+import { setUniqueValue } from '../utils/constant';
+import { SignUpRequest, AddUser } from '../connection';
 import firebase from '../firebase/config';
 //import auth from '@react-native-firebase/auth';
 
 
-const SignUp = ({navigation}) =>{
+const SignUp = ({ navigation }) => {
     const globalState = useContext(Store);
     const { dispatchLoaderAction } = globalState;
-    const[credentials,setCredentials] = useState({
+    const [credentials, setCredentials] = useState({
         name: '',
-        email :'',
-        password:'',
-        confirmPassword:'',
+        email: '',
+        password: '',
+        confirmPassword: '',
 
     });
-    const{name,email,password,confirmPassword} = credentials;
-//  name, password and email required msg 
-    onSignUpPress=() => {
-        if(!name){
-             alert('Name is required');
-        }else if(!email){
+    const { name, email, password, confirmPassword } = credentials;
+    //  name, password and email required msg 
+    onSignUpPress = () => {
+        if (!name) {
+            alert('Name is required');
+        } else if (!email) {
             alert('Email is required')
 
-        }else if(!password){
+        } else if (!password) {
             alert('Password is required')
-            
-        }else if(password !==confirmPassword){
+
+        } else if (password !== confirmPassword) {
             alert('password did not match')
 
-        }else{
-           // alert(JSON.stringify(credentials));
-           dispatchLoaderAction({
-            type:LOADING_START,
-
-        });
-        // SignUpRequest(email,password)
-        // .then(()=>{
-        //     console.log(firebase.auth().currentUser);
-       
-        firebase.auth().createUserWithEmailAndPassword(email,password).then(function(result){
-            let uid = result.user.uid;
-            let profileImg = '';
-            AddUser(name,email,uid,profileImg)
-            .then(()=>{
-                setAsyncStorage(keys.uuid,uid);
-                setUniqueValue(uid);
-                dispatchLoaderAction({
-                    type:LOADING_STOP,
-                });
-                navigation.replace('Home');
-            })
-            .catch((err)=>{
-                dispatchLoaderAction({
-                    type:LOADING_STOP,
-                });
-                alert(err);
-            });
-        
-        })
-        .catch((err)=>{
+        } else {
+            // alert(JSON.stringify(credentials));
             dispatchLoaderAction({
-                type:LOADING_STOP,
-            });
-            alert(err);
-        });
-        // setTimeout(()=>{
-        //     dispatchLoaderAction({
-        //         type:LOADING_STOP,
+                type: LOADING_START,
 
-        //     });
-        // },1000)
-       
+            });
+            // SignUpRequest(email,password)
+            // .then(()=>{
+            //     console.log(firebase.auth().currentUser);
+
+            firebase.auth().createUserWithEmailAndPassword(email, password).then(function (result) {
+                let uid = result.user.uid;
+                let profileImg = '';
+                AddUser(name, email, uid, profileImg)
+                    .then(() => {
+                        setAsyncStorage(keys.uuid, uid);
+                        setUniqueValue(uid);
+                        dispatchLoaderAction({
+                            type: LOADING_STOP,
+                        });
+                        navigation.replace('Home');
+                    })
+                    .catch((err) => {
+                        dispatchLoaderAction({
+                            type: LOADING_STOP,
+                        });
+                        alert(err);
+                    });
+
+            })
+                .catch((err) => {
+                    dispatchLoaderAction({
+                        type: LOADING_STOP,
+                    });
+                    alert(err);
+                });
+            // setTimeout(()=>{
+            //     dispatchLoaderAction({
+            //         type:LOADING_STOP,
+
+            //     });
+            // },1000)
+
         }
-       
+
     };
-    const handleOnChange = (name,value)=>{
+    const handleOnChange = (name, value) => {
         setCredentials({
             ...credentials,
-            [name]:value,
+            [name]: value,
         })
     }
-    return(
+    return (
         <View style={styles.container}>
-        <Image 
-        source={images.LOGING_BACKGROUND} 
-        style={styles.topImage}
-        />
-            
-        
+            <Image
+                source={images.LOGING_BACKGROUND}
+                style={styles.topImage}
+            />
+
+
             <Text style={styles.account}>Create Account</Text>
-          <View> 
-            <TextInput style={styles.input}
-            // name="name"
-            placeholder=" Enter User name"
-            value={name}
-            returnKeyType="next"
-            autoCapitalize="none"
-            autoCorrect={false}
-            onChangeText ={(text)=>handleOnChange('name',text)}
+            <View>
+                <TextInput style={styles.input}
+                    // name="name"
+                    placeholder=" Enter User name"
+                    value={name}
+                    returnKeyType="next"
+                    autoCapitalize="none"
+                    autoCorrect={false}
+                    onChangeText={(text) => handleOnChange('name', text)}
 
-            />
-             <TextInput style={styles.input}
-            //name="email"
-            placeholder="Enter Email"
-            value={email}
-            returnKeyType="next"
-            keyboardType="email-address"
-            autoCapitalize="none"
-            autoCorrect={false}
-            onChangeText ={(text)=>handleOnChange('email',text)}
+                />
+                <TextInput style={styles.input}
+                    //name="email"
+                    placeholder="Enter Email"
+                    value={email}
+                    returnKeyType="next"
+                    keyboardType="email-address"
+                    autoCapitalize="none"
+                    autoCorrect={false}
+                    onChangeText={(text) => handleOnChange('email', text)}
 
-            />
+                />
 
-            <TextInput style ={styles.input}
-           // name ="password"
-            placeholder="Enter Password"
-            value={password}
-            returnKeyType="next"
-            secureTextEntry
-            autoCorrect={false}
-            onChangeText ={(text)=>handleOnChange('password',text)}
-
-           
-            />
-             <TextInput style ={styles.input}
-            // name ="password"
-            placeholder="Enter Confirm Password"
-            value={confirmPassword}
-            returnKeyType="go"
-            secureTextEntry
-            autoCorrect={false}
-            onChangeText ={(text)=>handleOnChange('confirmPassword',text)}
-
-           
-            />
+                <TextInput style={styles.input}
+                    // name ="password"
+                    placeholder="Enter Password"
+                    value={password}
+                    returnKeyType="next"
+                    secureTextEntry
+                    autoCorrect={false}
+                    onChangeText={(text) => handleOnChange('password', text)}
 
 
-            <TouchableOpacity style ={styles.buttonContainer} onPress={()=>onSignUpPress()}>
-                <Text style ={styles.buttonText}>SignUp</Text>
-            </TouchableOpacity>
-            <TouchableOpacity  style = {styles.login}onPress={()=>navigation.navigate('Login')}>
-              <Text> Have an account? <Text style={styles.loginText}>signIn</Text></Text>
-            </TouchableOpacity>
-            </View> 
-            
+                />
+                <TextInput style={styles.input}
+                    // name ="password"
+                    placeholder="Enter Confirm Password"
+                    value={confirmPassword}
+                    returnKeyType="go"
+                    secureTextEntry
+                    autoCorrect={false}
+                    onChangeText={(text) => handleOnChange('confirmPassword', text)}
+
+
+                />
+
+
+                <TouchableOpacity style={styles.buttonContainer} onPress={() => onSignUpPress()}>
+                    <Text style={styles.buttonText}>SignUp</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.login} onPress={() => navigation.navigate('Login')}>
+                    <Text> Have an account? <Text style={styles.loginText}>signIn</Text></Text>
+                </TouchableOpacity>
+            </View>
+
         </View>
     );
 }
 
 export default SignUp;
 const styles = StyleSheet.create({
-    container:{
+    container: {
         padding: 20,
-        flex:1,
-        backgroundColor:'white',
-        justifyContent:'center',
-        alignItems:'stretch'
-        
+        flex: 1,
+        backgroundColor: 'white',
+        justifyContent: 'center',
+        alignItems: 'stretch'
+
     },
-    topImage:{
+    topImage: {
         width: 300, height: 200,
         justifyContent: 'center',
         alignSelf: 'center',
         // marginBottom:100,
-        
+
     },
-    account:{
+    account: {
         fontSize: 30,
-        marginBottom:40,
-        marginTop:20,
+        marginBottom: 40,
+        marginTop: 20,
         justifyContent: 'center',
         alignSelf: 'center',
-        
+
     },
-    input:{
-        paddingLeft:20,
-        borderRadius:50,
+    input: {
+        paddingLeft: 20,
+        borderRadius: 50,
         height: 50,
-        fontSize:18,
-        backgroundColor:'white',
-        borderColor:'#8d3fd2',
-        borderWidth:1,
-        marginBottom:10,
-        color:'#34495e',
-        
+        fontSize: 18,
+        backgroundColor: 'white',
+        borderColor: '#8d3fd2',
+        borderWidth: 1,
+        marginBottom: 10,
+        color: '#34495e',
+
 
     },
-    buttonContainer:{
-        height :30,
-        borderRadius:50,
-        backgroundColor:'#8d3fd2',
-        paddingVertical:25,
-        justifyContent:'center',
-        alignItems:'center',
-        marginLeft:50,
-        marginRight:50,
-        marginTop:30,
-        
-    },
-    buttonText:{
-         textAlign:'center',
-         fontSize:25,
-         color:'white'
+    buttonContainer: {
+        height: 30,
+        borderRadius: 50,
+        backgroundColor: '#8d3fd2',
+        paddingVertical: 25,
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginLeft: 50,
+        marginRight: 50,
+        marginTop: 30,
 
     },
-    createButtonContainer:{
-         height:30,
-         borderRadius:50,
-         backgroundColor:'white',
-         paddingVertical:25,
-         borderColor:'#800080',
-         borderWidth:1,
-         marginTop:20,
-         justifyContent:'center',
-         alignItems:'center',
-         marginLeft:50,
-         marginRight:50,
+    buttonText: {
+        textAlign: 'center',
+        fontSize: 25,
+        color: 'white'
+
     },
-    login:{
-        alignItems:'center',
-        marginTop:10,
-        
+    createButtonContainer: {
+        height: 30,
+        borderRadius: 50,
+        backgroundColor: 'white',
+        paddingVertical: 25,
+        borderColor: '#800080',
+        borderWidth: 1,
+        marginTop: 20,
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginLeft: 50,
+        marginRight: 50,
     },
-    loginText:{
-        color:'#8d3fd2',
-        fontSize:18, 
+    login: {
+        alignItems: 'center',
+        marginTop: 10,
+
+    },
+    loginText: {
+        color: '#8d3fd2',
+        fontSize: 18,
     }
 
 
