@@ -5,7 +5,7 @@ import uuid from '../utils/constant';
 import { TouchableOpacity } from "react-native-gesture-handler";
 
  
-const ChatBox = ({ userId, msg, img, onImgTap }) => {
+const ChatBox = ({ userId, msg, img}) => {
   let isCurrentUser = userId === uuid ? true : false;
 
   const { width: deviceWidth } = Dimensions.get("window" );
@@ -13,8 +13,8 @@ const ChatBox = ({ userId, msg, img, onImgTap }) => {
     <Card
       transparent
       style={{
-        maxWidth: deviceWidth / 2 + 10,
-        alignSelf: isCurrentUser ? "flex-end" : "flex-start",
+        maxWidth: deviceWidth / 2 + 50,
+        alignSelf: isCurrentUser ? "flex-start" : "flex-end",
       }}
     >
       <View
@@ -22,18 +22,17 @@ const ChatBox = ({ userId, msg, img, onImgTap }) => {
           styles.chatContainer,
           isCurrentUser && {
             borderTopLeftRadius: 20,
-            borderTopRightRadius: 0,
-            backgroundColor:'white',
+           
           },
         ]}
       >
         {img ? (
           <CardItem cardBody>
-            <TouchableOpacity onPress={onImgTap}>
+            <TouchableOpacity>
               <Image
                 source={{ uri: img }}
                 resizeMode="cover"
-                style={{ height: 200, width: deviceWidth / 2 }}
+                style={{ height: 400,borderColor:'grey',borderWidth:5,width: deviceWidth / 2+ 50 }}
               />
             </TouchableOpacity>
           </CardItem>
@@ -55,15 +54,15 @@ export default ChatBox;
 const styles = StyleSheet.create({
     chatContainer:{
         backgroundColor: 'white', 
-        borderTopRightRadius: 20
+        borderRadius: 20,
+        // borderTopLeftRadius: 20,
 
     },
 
     chatTxt:{
     color: 'black',
-    fontSize: 18,
+    fontSize: 16,
     marginVertical: 5,
-    fontWeight: "500",
     padding: 8,
 
     }

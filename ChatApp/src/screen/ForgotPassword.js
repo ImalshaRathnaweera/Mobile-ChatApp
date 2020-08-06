@@ -1,12 +1,28 @@
-import React from 'react';
+import React, { useState, useContext } from 'react';
 import {View,Text,TextInput,StyleSheet} from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import { ResetPasswordRequest } from '../connection';
+import firebase from '../firebase/config';
+import { Store } from '../context/store/store';
 
 const ForgotPassword= ()=>{
+    const[credentials,setCredentials] = useState({
+        email :'',
+    });
+    const{email} = credentials;
+     const onSendLink=() => {
+        firebase.auth().sendPasswordResetEmail(email)
+        .then(function(result){
+        });
+         
+    };
 
-    // onSendLink= ()=>{
-
-    // }
+    const handleOnChange = ()=>{
+        setCredentials({
+            ...credentials,
+           // [email]:value,
+        })
+    }
 
     return(
         <View style={styles.container}>
@@ -16,14 +32,14 @@ const ForgotPassword= ()=>{
            <TextInput style={styles.input}
             name="email"
             placeholder="Enter Valid Email"
-            // value={email}
+            //value={email}
             returnKeyType="next"
             keyboardType="email-address"
             autoCapitalize="none"
             autoCorrect={false}
             onChangeText ={(text)=>handleOnChange('email',text)}
             />
-            <TouchableOpacity style={styles.btn} onPress>
+            <TouchableOpacity style={styles.btn} onPress={()=>onSendLink()}>
                 <Text style={styles.btnText}>Send Link</Text>
             </TouchableOpacity>
            </View>

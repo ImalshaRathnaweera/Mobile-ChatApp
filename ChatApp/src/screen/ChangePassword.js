@@ -1,43 +1,80 @@
-import React from 'react';
-import {View ,Text,TextInput,StyleSheet,TouchableOpacity} from 'react-native';
+import React, { useState } from 'react';
+import {View ,Text,TextInput,StyleSheet,TouchableOpacity, Alert} from 'react-native';
+import firebase from '../firebase/config';
 
+const ChangePassword =() =>{
+    const [userDetail, setUserDetail] = useState({
+        id: "",
+        currentPassword:"",
+        newPassword: "",
+        confirmPassword:"",
+      });
+      const{currentPassword,newPassword,confirmPassword} = userDetail;
 
-const ChangePassword =({navigation}) =>{
+      reauthenticate = (currentPassword)=>{
+          var user = firebase.auth().currentUser;
+          var cred = firebase.auth.EmailAuthProvider.credential(user.email,currentPassword);
+          return user.reauthenticateWithCredential(cred);
+      }
+    const onUpdatePassword = () =>{
+        reauthenticate(currentPassword).then(()=>{
+            var user = firebase.auth().currentUser;
+        user.updatePassword(newPassword).then(()=>{
+            if(newPassword !== confirmPassword){
+                alert("password did not match");
+            }else{
+                alert("Password was change");
+            }
+           
+        }).catch((err)=>{
+            alert(err);
+
+        }); 
+        }).catch((err)=>{
+            alert(err);
+        });
+       
+    };
+
+    const handleOnChange = (newPassword,value)=>{
+        setUserDetail({
+            ...userDetail,
+            [newPassword]:value,
+        })
+    }
+    
     return(
         <View style={styles.container}>
             <View style={styles.formContainer}>
             <TextInput style ={styles.input}
             placeholder="Enter Current Password"
-            // value={password}
             returnKeyType="next"
             secureTextEntry
             autoCorrect={false}
-           // onChangeText ={(text)=>handleOnChange('password',text)}
+            onChangeText ={(text)=>handleOnChange('currentPassword',text)}
 
            
             />
             <TextInput style ={styles.input}
             placeholder="Enter New Password"
-           // value={password}
             returnKeyType="next"
             secureTextEntry
             autoCorrect={false}
-            // onChangeText ={(text)=>handleOnChange('password',text)}
+            onChangeText ={(text)=>handleOnChange('newPassword',text)}
 
            
             />
             
             <TextInput style ={styles.input}
              placeholder="Enter Confirm Password"
-            //  value={password}
              returnKeyType="next"
              secureTextEntry
              autoCorrect={false}
-            //  onChangeText ={(text)=>handleOnChange('password',text)}
+             onChangeText ={(text)=>handleOnChange('confirmPassword',text)}
  
             
              />
-             <TouchableOpacity style ={styles.buttonContainer} onPress>
+             <TouchableOpacity style ={styles.buttonContainer} onPress={()=>onUpdatePassword()} >
                 <Text style ={styles.buttonText}>Save</Text>
             </TouchableOpacity>
 

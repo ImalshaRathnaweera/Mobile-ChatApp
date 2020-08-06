@@ -7,9 +7,9 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { FlatList } from 'react-native-gesture-handler';
 import ShowUsers from '../component/ShowUsers';
 import { uuid } from '../utils/constant';
-// import { Header } from 'react-native/Libraries/NewAppScreen';
 import {Header, Item,Icon, Input} from 'native-base';
 import images from '../utils/images';
+import _ from 'lodash';
 
 const Chats = ({navigation}) =>{
     
@@ -23,9 +23,9 @@ const Chats = ({navigation}) =>{
         
       });
       const{name,profileImg}=userDetail;
-      const [allUsers, setAllUsers,setSearchResult] = useState([]);
+      const [allUsers, setAllUsers] = useState([]);
       //search 
-      const [searchTerm, setSearchTerm] = useState("");
+      //const [searchTerm, setSearchTerm] = useState("");
       useEffect(() => {
         dispatchLoaderAction({
           type: LOADING_START,
@@ -67,19 +67,7 @@ const Chats = ({navigation}) =>{
           });
         }
         
-        //search function
-       // const result = allUsers.filter(item=>item.toLowerCase().includes(searchTerm));
-        //console.log(result);
-        // setSearchResult(result);
       }, []);
-
-      //search
-      // useEffect(()=>{
-      //   const result = allUsers.filter(item=>item.toLowerCase().includes(searchTerm)
-      //   );
-      //   setSearchResult(result);
-
-      // },[searchTerm]);
 
       const nameTap = (profileImg,name,guestUserId)=>{
         if(!profileImg){
@@ -97,8 +85,17 @@ const Chats = ({navigation}) =>{
         }
       };
        //search call
-      const handleSearch = ()=>{
-        setSearchTerm()
+      const handleSearch = (text)=>{
+            const formattedQuery = text.toLowerCase()
+            const data = _.filter(allUsers=>{
+              if(formattedQuery){
+                return true
+              }else{
+                return false
+              }
+              
+            })
+
        } ;    
 
     return(
@@ -110,8 +107,8 @@ const Chats = ({navigation}) =>{
               autoCorrect={false}
               returnKeyType="done"
               style={styles.input}
-              value={searchTerm}
-              onChangeText={()=>handleSearch()}/>
+              // value={searchTerm}
+              onChangeText={(text)=>handleSearch('name',text)}/>
             <Image 
              source={images. SEARCH_LOGO} 
              style={styles.logo}
@@ -152,8 +149,8 @@ const styles = StyleSheet.create({
     backgroundColor:'grey'
   },
   logo:{
-    height:30,
-    width:30,
+    height:25,
+    width:25,
     marginRight:6   
 },
 input:{

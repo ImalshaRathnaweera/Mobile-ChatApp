@@ -63,7 +63,7 @@ const UpdateProfile =({navigation}) =>{
                 ...userDetail,
                 name:name,
               });
-            //   navigation.navigate('Setting');
+            alert("Name change successful");
             })
             .catch((err)=>{
               dispatchLoaderAction({

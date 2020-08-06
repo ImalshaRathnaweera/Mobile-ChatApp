@@ -145,6 +145,9 @@ const SignUp = ({navigation}) =>{
             <TouchableOpacity style ={styles.buttonContainer} onPress={()=>onSignUpPress()}>
                 <Text style ={styles.buttonText}>SignUp</Text>
             </TouchableOpacity>
+            <TouchableOpacity  style = {styles.login}onPress={()=>navigation.navigate('Login')}>
+              <Text> Have an account? <Text style={styles.loginText}>signIn</Text></Text>
+            </TouchableOpacity>
             </View> 
             
         </View>
@@ -198,7 +201,7 @@ const styles = StyleSheet.create({
         alignItems:'center',
         marginLeft:50,
         marginRight:50,
-        marginTop:40,
+        marginTop:30,
         
     },
     buttonText:{
@@ -220,11 +223,16 @@ const styles = StyleSheet.create({
          marginLeft:50,
          marginRight:50,
     },
-    createbuttonText:{
-        textAlign:'center',
-        fontSize:20,
-        color:'#800080',
+    login:{
+        alignItems:'center',
+        marginTop:10,
+        
+    },
+    loginText:{
+        color:'#8d3fd2',
+        fontSize:18, 
     }
+
 
 });
 

@@ -63,14 +63,14 @@ const UserChat = ({route,navigation}) => {
             } else if (response.error) {
               console.log(" image picker error", response.error);
             } else {
-              // Base 64
+              //image
               let source = "data:image/jpeg;base64," + response.data;
       
               senderMsg(msgValue, currentuserId, guestUserId, source)
                 .then(() => {})
                 .catch((err) => alert(err));
       
-              // * guest user
+              // guest user
       
               recieverMsg(msgValue, currentuserId, guestUserId, source)
                 .then(() => {})
@@ -109,7 +109,7 @@ const handleOnChange =(text)=>{
             msg={item.msg}
             userId ={item.sendBy}
             img={item.img}
-            onImgTap={()=>imgTap(item.img)}
+            // onImgTap={()=>imgTap(item.img)}
             />
            )}
            />

@@ -17,7 +17,7 @@ const Setting = ({navigation}) =>{
            </View> 
            <View style={styles.nameContainer}>
            <TouchableOpacity >
-               <Text style={styles.topic}>Account Information</Text>
+               <Text style={styles.topic}>Account Infor</Text>
            </TouchableOpacity>
            </View>
         </View>
