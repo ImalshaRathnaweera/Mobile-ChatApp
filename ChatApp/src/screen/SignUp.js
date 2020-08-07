@@ -165,7 +165,8 @@ const styles = StyleSheet.create({
 
     },
     topImage: {
-        width: 300, height: 200,
+        width: 300,
+        height: 200,
         justifyContent: 'center',
         alignSelf: 'center',
         // marginBottom:100,
@@ -201,7 +202,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginLeft: 50,
         marginRight: 50,
-        marginTop: 30,
+        marginTop: 20,
 
     },
     buttonText: {
@@ -225,7 +226,7 @@ const styles = StyleSheet.create({
     },
     login: {
         alignItems: 'center',
-        marginTop: 10,
+        marginTop: 5,
 
     },
     loginText: {

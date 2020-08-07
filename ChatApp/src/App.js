@@ -6,7 +6,6 @@ import { StoreProvider } from './context/store/store';
 
 const App = () => {
   const [user, setUser] = useState(null);
-
   return (
     <StoreProvider>
       <NavigationContainer>

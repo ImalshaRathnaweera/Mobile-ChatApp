@@ -61,7 +61,7 @@ const AuthNavigator =({navigation})=>(
         <Stack.Screen
             name ="Home"
             component={Home}
-            options = {{title:"ChatApp",headerShown:true,headerTitleAlign:'center', 
+            options = {{title:"TalkMore",headerShown:true,headerTitleAlign:'center'
         }} />
         <Stack.Screen
              name = "UserChat"

@@ -6,23 +6,23 @@ import firebase from '../firebase/config';
 import { Store } from '../context/store/store';
 
 const ForgotPassword = () => {
-    const [credentials, setCredentials] = useState({
-        email: '',
-    });
-    const { email } = credentials;
-    const onSendLink = () => {
-        firebase.auth().sendPasswordResetEmail(email)
-            .then(function (result) {
-            });
+    // const [credentials, setCredentials] = useState({
+    //     email: '',
+    // });
+    // const { email } = credentials;
+    // const onSendLink = () => {
+    //     firebase.auth().sendPasswordResetEmail(email)
+    //         .then(function (result) {
+    //         });
 
-    };
+    // };
 
-    const handleOnChange = () => {
-        setCredentials({
-            ...credentials,
-            // [email]:value,
-        })
-    }
+    // const handleOnChange = () => {
+    //     setCredentials({
+    //         ...credentials,
+    //         // [email]:value,
+    //     })
+    // }
 
     return (
         <View style={styles.container}>
@@ -37,9 +37,9 @@ const ForgotPassword = () => {
                     keyboardType="email-address"
                     autoCapitalize="none"
                     autoCorrect={false}
-                    onChangeText={(text) => handleOnChange('email', text)}
+                    // onChangeText={(text) => handleOnChange('email', text)}
                 />
-                <TouchableOpacity style={styles.btn} onPress={() => onSendLink()}>
+                <TouchableOpacity style={styles.btn}>
                     <Text style={styles.btnText}>Send Link</Text>
                 </TouchableOpacity>
             </View>
@@ -67,6 +67,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontSize: 15,
         marginBottom: 40,
+        color: 'grey'
     },
     btnText: {
         textAlign: 'center',
